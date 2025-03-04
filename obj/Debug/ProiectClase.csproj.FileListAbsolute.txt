@@ -1,0 +1,14 @@
+C:\Users\Damariis\Desktop\Lavinia\ProiectClase\ProiectClase\ProiectClase\bin\Debug\ProiectClase.exe.config
+C:\Users\Damariis\Desktop\Lavinia\ProiectClase\ProiectClase\ProiectClase\bin\Debug\ProiectClase.exe
+C:\Users\Damariis\Desktop\Lavinia\ProiectClase\ProiectClase\ProiectClase\bin\Debug\ProiectClase.pdb
+C:\Users\Damariis\Desktop\Lavinia\ProiectClase\ProiectClase\ProiectClase\obj\Debug\ProiectClase.csproj.AssemblyReference.cache
+C:\Users\Damariis\Desktop\Lavinia\ProiectClase\ProiectClase\ProiectClase\obj\Debug\ProiectClase.csproj.CoreCompileInputs.cache
+C:\Users\Damariis\Desktop\Lavinia\ProiectClase\ProiectClase\ProiectClase\obj\Debug\ProiectClase.exe
+C:\Users\Damariis\Desktop\Lavinia\ProiectClase\ProiectClase\ProiectClase\obj\Debug\ProiectClase.pdb
+E:\ProiectClase\ProiectClase\bin\Debug\ProiectClase.exe.config
+E:\ProiectClase\ProiectClase\bin\Debug\ProiectClase.exe
+E:\ProiectClase\ProiectClase\bin\Debug\ProiectClase.pdb
+E:\ProiectClase\ProiectClase\obj\Debug\ProiectClase.csproj.AssemblyReference.cache
+E:\ProiectClase\ProiectClase\obj\Debug\ProiectClase.csproj.CoreCompileInputs.cache
+E:\ProiectClase\ProiectClase\obj\Debug\ProiectClase.exe
+E:\ProiectClase\ProiectClase\obj\Debug\ProiectClase.pdb
