@@ -1,33 +1,27 @@
 ﻿using System;
+using LibrarieModele;
 
 namespace AsistentVirtualPlante
 {
     public class AsistentVirtual
     {
-        // Metodă care verifică planta și returnează un mesaj
-        public string VerificaPlanta(Planta planta)
+        public string InteractioneazaCuUtilizatorul(Planta planta)
         {
-            string mesaj = $"\nVerific plantă: {planta.GetNume()}\n";
+            string rezultat = planta.ConversieLaSir_PentruFisier();
 
-            if (planta.GetNevoieApa() <= 1)
+            Console.WriteLine("Vrei sa uzi planta? (da/nu)");
+            if (Console.ReadLine()?.ToLower() == "da")
             {
-                mesaj += "Este timpul să uzi planta!\n";
-            }
-            else
-            {
-                mesaj += $"Nu este nevoie să uzi planta înca. Asteapta {planta.GetNevoieApa()} zile.\n";
+                rezultat += "\nPlanta a fost udata.";
             }
 
-            if (planta.GetLuminaPrimita() < planta.GetNevoieLuminaMinima())
+            Console.WriteLine("Vrei sa muti planta intr-un loc mai luminos? (da/nu)");
+            if (Console.ReadLine()?.ToLower() == "da")
             {
-                mesaj += "Planta nu primeste suficienta lumina si are nevoie de mai multa.\n";
-            }
-            else
-            {
-                mesaj += "Planta primeste suficienta lumina.\n";
+                rezultat += "\nPlanta a fost mutata intr-un loc mai luminos.";
             }
 
-            return mesaj;
+            return rezultat;
         }
     }
 }
