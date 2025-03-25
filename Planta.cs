@@ -5,21 +5,29 @@ namespace LibrarieModele
     public class Planta
     {
         public string Nume { get; set; }
-        public int NevoieApa { get; set; }
-        public int NevoieLumina { get; set; }
+        public int NevoieApa { get; set; } // Zile necesare pentru udare
+        public int NevoieLumina { get; set; } // Ore necesare de lumină pe zi
+        public TipSol TipSol { get; set; } // Tip de sol
+        public CaracteristiciPlanta Caracteristici { get; set; } // Caracteristicile plantei
 
         // Constructor cu parametri
-        public Planta(string nume, int nevoieApa, int nevoieLumina)
+        public Planta(string nume, int nevoieApa, int nevoieLumina, TipSol tipSol, CaracteristiciPlanta caracteristici)
         {
             Nume = nume;
-            NevoieApa = Limiteaza(nevoieApa, 1, 10);  // Limitează nevoia de apă între 1 și 10
-            NevoieLumina = Limiteaza(nevoieLumina, 1, 10);  // Limitează nevoia de lumină între 1 și 10
+            NevoieApa = nevoieApa;
+            NevoieLumina = nevoieLumina;
+            TipSol = tipSol;
+            Caracteristici = caracteristici;
         }
 
         // Metoda care verifică starea plantei
         public string VerificaStarePlanta()
         {
-            return $"Planta {Nume} are nevoie de {NevoieApa} zile de apă și {NevoieLumina} ore de lumină pe zi.";
+            return $"Nume: {Nume}, " +
+                   $"Nevoie de apă: {NevoieApa} zile, " +
+                   $"Nevoie de lumină: {NevoieLumina} ore/zi, " +
+                   $"Tip sol: {TipSol}, " +
+                   $"Caracteristici: {Caracteristici}";
         }
 
         // Metoda pentru udarea plantei
@@ -34,7 +42,7 @@ namespace LibrarieModele
         public string MutaPlantaLocMaiLuminos()
         {
             // Crește nevoia de lumină, dar o limităm între 1 și 10
-            NevoieLumina = Limiteaza(NevoieLumina + 1, 1, 10);
+            NevoieLumina = Limiteaza(NevoieLumina - 1, 1, 10);
             return $"{Nume} a fost mutată într-un loc mai luminos. Nevoia de lumină este acum {NevoieLumina} ore pe zi.";
         }
 
@@ -47,10 +55,13 @@ namespace LibrarieModele
                 return maxim;  // Dacă valoarea este mai mare decât maxim, setează la maxim
             return valoare;  // Altfel, lasă valoarea neschimbată
         }
+
+        // Metoda pentru salvarea datelor în formatul necesar fișierului
         public string ConversieLaSir_PentruFisier()
-{
-    return $"Nume: {Nume}, Nevoie de apa: {NevoieApa} zile/saptamana, Nevoie de lumina: {NevoieLumina} ore/zi";
-}
+        {
+            return $"{Nume}, {NevoieApa}, {NevoieLumina}, {TipSol}, {Caracteristici}";
+        }
+
 
     }
 }

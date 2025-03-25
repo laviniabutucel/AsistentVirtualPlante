@@ -19,8 +19,7 @@ namespace NivelStocareDate
         {
             if (nrPlante < NR_MAX_PLANTE)
             {
-                plante[nrPlante] = planta;
-                nrPlante++;
+                plante[nrPlante++] = planta;
             }
         }
 
@@ -30,10 +29,16 @@ namespace NivelStocareDate
             return plante;
         }
 
-        // Funcția pentru a căuta o plantă după nume
         public Planta CautaPlantaDupaNume(string numeCautat)
         {
-            return Array.Find(plante, p => p != null && p.Nume.Equals(numeCautat, StringComparison.OrdinalIgnoreCase));
+            for (int i = 0; i < nrPlante; i++)
+            {
+                if (plante[i] != null && plante[i].Nume.Equals(numeCautat, StringComparison.OrdinalIgnoreCase))
+                {
+                    return plante[i];
+                }
+            }
+            return null;
         }
     }
 }

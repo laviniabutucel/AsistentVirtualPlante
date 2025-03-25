@@ -7,18 +7,18 @@ namespace AsistentVirtualPlante
     {
         public string InteractioneazaCuUtilizatorul(Planta planta)
         {
-            string rezultat = planta.ConversieLaSir_PentruFisier();
+            string rezultat = planta.VerificaStarePlanta();
 
-            Console.WriteLine("Vrei sa uzi planta? (da/nu)");
+            Console.WriteLine("Vrei să uzi planta? (da/nu)");
             if (Console.ReadLine()?.ToLower() == "da")
             {
-                rezultat += "\nPlanta a fost udata.";
+                rezultat += "\n" + planta.UdaPlanta();
             }
 
-            Console.WriteLine("Vrei sa muti planta intr-un loc mai luminos? (da/nu)");
+            Console.WriteLine("Vrei să muți planta într-un loc mai luminos? (da/nu)");
             if (Console.ReadLine()?.ToLower() == "da")
             {
-                rezultat += "\nPlanta a fost mutata intr-un loc mai luminos.";
+                rezultat += "\n" + planta.MutaPlantaLocMaiLuminos();
             }
 
             return rezultat;

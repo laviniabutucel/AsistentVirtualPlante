@@ -1,55 +1,99 @@
-﻿using LibrarieModele;
-using System;
+﻿using System;
 using System.IO;
+using LibrarieModele;
 
 namespace NivelStocareDate
 {
     public class AdministrarePlante_FisierText
     {
-        private const int NR_MAX_PLANTE = 50;
         private string numeFisier;
 
-        public AdministrarePlante_FisierText(string numeFisier)
+        public AdministrarePlante_FisierText(string numeFisierInitial)
         {
-            this.numeFisier = numeFisier;
-            // Se încearcă deschiderea fișierului în modul OpenOrCreate
-            // Astfel încât fișierul va fi creat dacă nu există
+            string locatieFisierSolutie = Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+            string caleCompletaFisier = Path.Combine(locatieFisierSolutie, numeFisierInitial);
+            this.numeFisier = caleCompletaFisier;
+
             Stream streamFisierText = File.Open(numeFisier, FileMode.OpenOrCreate);
             streamFisierText.Close();
         }
 
         public void AddPlanta(Planta planta)
         {
-            // Folosim instrucțiunea 'using' pentru a ne asigura că StreamWriter este închis corespunzător
-            using (StreamWriter streamWriterFisierText = new StreamWriter(numeFisier, true))
+            using (StreamWriter streamWriter = new StreamWriter(numeFisier, true, System.Text.Encoding.UTF8))
             {
-                streamWriterFisierText.WriteLine(planta.ConversieLaSir_PentruFisier());
+                streamWriter.WriteLine(planta.ConversieLaSir_PentruFisier());
             }
         }
 
         public Planta[] GetPlante(out int nrPlante)
         {
-            Planta[] plante = new Planta[NR_MAX_PLANTE];
+            Planta[] plante = new Planta[50];
             nrPlante = 0;
 
-            using (StreamReader streamReader = new StreamReader(numeFisier))
+            using (StreamReader streamReader = new StreamReader(numeFisier, System.Text.Encoding.UTF8))
             {
                 string linieFisier;
 
                 while ((linieFisier = streamReader.ReadLine()) != null)
                 {
-                    // Împărțim linia citită pentru a extrage datele plantei
-                    string[] datePlanta = linieFisier.Split(new[] { ", " }, StringSplitOptions.None);
-                    string nume = datePlanta[0].Split(':')[1].Trim();
-                    int nevoieApa = int.Parse(datePlanta[1].Split(':')[1].Trim());
-                    int nevoieLumina = int.Parse(datePlanta[2].Split(':')[1].Trim());
+                    string[] datePlanta = linieFisier.Split(',');
+                    if (datePlanta.Length == 5)
+                    {
+                        string nume = datePlanta[0].Trim();
+                        int nevoieApa = int.Parse(datePlanta[1].Trim());
+                        int nevoieLumina = int.Parse(datePlanta[2].Trim());
+                        TipSol tipSol = (TipSol)Enum.Parse(typeof(TipSol), datePlanta[3].Trim());
+                        CaracteristiciPlanta caracteristici = (CaracteristiciPlanta)Enum.Parse(typeof(CaracteristiciPlanta), datePlanta[4].Trim());
 
-                    // Creăm un obiect Planta folosind constructorul corect
-                    plante[nrPlante++] = new Planta(nume, nevoieApa, nevoieLumina);
+                        plante[nrPlante++] = new Planta(nume, nevoieApa, nevoieLumina, tipSol, caracteristici);
+                    }
                 }
             }
 
             return plante;
+        }
+
+        public Planta CautaPlantaDupaNume(string numeCautat)
+        {
+            using (StreamReader streamReader = new StreamReader(numeFisier, System.Text.Encoding.UTF8))
+            {
+                string linieFisier;
+
+                while ((linieFisier = streamReader.ReadLine()) != null)
+                {
+                    string[] datePlanta = linieFisier.Split(',');
+                    if (datePlanta.Length == 5)
+                    {
+                        string nume = datePlanta[0].Trim();
+                        if (nume.Equals(numeCautat, StringComparison.OrdinalIgnoreCase))
+                        {
+                            int nevoieApa = int.Parse(datePlanta[1].Trim());
+                            int nevoieLumina = int.Parse(datePlanta[2].Trim());
+                            TipSol tipSol = (TipSol)Enum.Parse(typeof(TipSol), datePlanta[3].Trim());
+                            CaracteristiciPlanta caracteristici = (CaracteristiciPlanta)Enum.Parse(typeof(CaracteristiciPlanta), datePlanta[4].Trim());
+
+                            return new Planta(nume, nevoieApa, nevoieLumina, tipSol, caracteristici);
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        public void ActualizeazaFisier(Planta[] plante, int nrPlante)
+        {
+            using (StreamWriter streamWriter = new StreamWriter(numeFisier, false, System.Text.Encoding.UTF8))
+            {
+                for (int i = 0; i < nrPlante; i++)
+                {
+                    if (plante[i] != null)
+                    {
+                        streamWriter.WriteLine(plante[i].ConversieLaSir_PentruFisier());
+                    }
+                }
+            }
         }
     }
 }
