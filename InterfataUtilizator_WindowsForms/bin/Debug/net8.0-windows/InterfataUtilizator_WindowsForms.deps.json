@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "InterfataUtilizator_WindowsForms/1.0.0": {
+        "dependencies": {
+          "ProiectClase": "1.0.0"
+        },
+        "runtime": {
+          "InterfataUtilizator_WindowsForms.dll": {}
+        }
+      },
+      "ProiectClase/1.0.0": {
+        "runtime": {
+          "ProiectClase.exe": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "InterfataUtilizator_WindowsForms/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ProiectClase/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -1,0 +1,2 @@
+﻿Cactus, 5, 8, Argilos, Decorativa
+Lavandă, 4, 10, Cernoziom, Aromatica

@@ -1,0 +1,3 @@
+﻿cacrus, 6, 9, Nisipos, Decorativa | Medicinala
+lalea, 6, 10, Lutos, Decorativa
+orhidee, 5, 9, Lutos, Decorativa
